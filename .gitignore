@@ -1,2 +1,5 @@
 /backends/node_modules/
 /frontends/node_modules/
+/backends/serverless.yml/
+/frontends/dist/
+/frontends/.temp/

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router  } from '@angular/router';
 import { TodoService } from '../todo/todo.service';
 @Component({
   selector: 'app-root',
@@ -8,7 +8,9 @@ import { TodoService } from '../todo/todo.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, public router: Router) {
+
+   }
   // class method for toggling AddTodoBox in todo-list.component.html
   showAddTodoBox(e): void {
     e.preventDefault();

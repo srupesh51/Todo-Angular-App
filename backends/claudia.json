@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "rupesh",
+    "name": "backends",
+    "region": "us-east-1",
+    "sharedRole": true
+  },
+  "api": {
+    "id": "gu76yisbsb"
+  }
+}

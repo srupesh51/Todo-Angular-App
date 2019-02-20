@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { environment } from '../environments/environment';
 @Injectable()
 export class TodoService {
-    private apiUrl = 'http://localhost:3000/api/';
+    private apiUrl = environment.production ? 'https://i4q2ohoml4.execute-api.us-east-1.amazonaws.com/production/api/' : 'http://localhost:3000/api/';
     showAddTodoBox: boolean = true;
     constructor(private http: Http) { }
     getTodos(): Promise<any> {

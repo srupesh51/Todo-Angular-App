@@ -3,7 +3,9 @@ const path = require('path');
 const bodyParser = require ('body-parser');
 const logger  = require('morgan');
 const mongoose = require('mongoose');
+const cors = require("cors");
 const todoRoutes = require('./routes/todoRoutes');
+const sls = require('serverless-http');
 const app = express();
 
 app.use((req, res, next) => {
@@ -14,6 +16,7 @@ app.use((req, res, next) => {
 })
 // configure app
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -22,13 +25,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set the port
 const port = process.env.PORT || 3000;
 // connect to database
-
-mongoose.connect('mongodb://localhost/mern-todo-app', {
+// 'mongodb://localhost/mern-todo-app'
+mongoose.connect(process.env.MODE === 'production' ? 'mongodb+srv://dbuser:password134@cluster0-3ecdp.mongodb.net/todoDb' : 'mongodb://localhost/mern-todo-app', {
     useNewUrlParser: true,
+}).then(() => {
+    console.log('Connected to Database!');
+})
+.catch((err) => {
+    console.log('Connection Failed!!!',err);
 });
 app.use('/api', todoRoutes);
 app.get('/', (req, res) => {
     return res.end('Api working');
+})
+app.get('/hello', (req, res) => {
+    return res.end('Api working fine');
 })
 // catch 404
 app.use((req, res, next) => {
@@ -38,3 +49,5 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log(`App Server Listening at ${port}`);
 });
+
+module.exports.handler = sls(app);

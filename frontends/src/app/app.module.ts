@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { HomePageComponent } from '../home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoRoutingModule } from '../todo/todo.routing.module';
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpModule,
     TodoRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

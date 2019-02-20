@@ -11,7 +11,7 @@ export class TodoListComponent implements OnInit {
     todoToEdit: any = {};
     todoToDelete: any = {};
     apiMessage: string;
-    constructor(private todoService: TodoService) { }
+    constructor(public todoService: TodoService) { }
     ngOnInit(): void {
         this.todoService.showAddTodoBox = true;
         this.todoService.getTodos()

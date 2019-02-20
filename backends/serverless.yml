@@ -1,0 +1,18 @@
+# serverless.yml
+
+service: my-serverless-app2
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: production
+  region: us-east-1
+  environment: # add environment property
+    MODE: production 
+
+functions:
+  app:
+    handler: server.handler # reference the file and exported method
+    events:
+      - http: ANY /
+        cors: true        
